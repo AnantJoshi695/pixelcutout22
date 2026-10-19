@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixelCutout - AI Background Remover</title>
+    <meta name="description" content="Remove image backgrounds with AI and precise manual control. Professional image editing made simple." />
+    <script>
+      /*
+       * Apply the saved theme before React mounts so the first paint already
+       * matches the user's choice (no flash of the wrong theme).
+       */
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme') || 'system';
+          var isDark =
+            stored === 'dark' ||
+            (stored === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var root = document.documentElement;
+          root.classList.remove('light', 'dark');
+          root.classList.add(isDark ? 'dark' : 'light');
+          root.style.colorScheme = isDark ? 'dark' : 'light';
+        } catch (e) {
+          /* localStorage unavailable — fall through to the default theme */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
