@@ -12,6 +12,7 @@ import {
   Expand,
   PanelLeft,
   PanelRight,
+  ArrowLeft,
 } from 'lucide-react';
 import type {
   ImageData as ImageDataType,
@@ -506,6 +507,16 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
       {/* Header */}
       <header className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 bg-white px-3 py-2.5 dark:border-gray-800 dark:bg-gray-900 sm:px-5">
         <div className="flex min-w-0 items-center gap-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            title="Back to home"
+            aria-label="Back to home"
+          >
+            <ArrowLeft size={18} />
+            <span className="hidden text-sm font-medium sm:inline">Back to Home</span>
+          </button>
           <button
             type="button"
             onClick={() => setMobilePanel((p) => (p === 'left' ? null : 'left'))}
