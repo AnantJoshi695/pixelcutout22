@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5ebe0"/>
+      <stop offset="100%" stop-color="#e8d5c4"/>
+    </linearGradient>
+    <linearGradient id="potGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c4724e"/>
+      <stop offset="50%" stop-color="#d4845e"/>
+      <stop offset="100%" stop-color="#b56340"/>
+    </linearGradient>
+    <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a8c5c"/>
+      <stop offset="100%" stop-color="#3a7a4c"/>
+    </linearGradient>
+    <linearGradient id="leafGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a9c6c"/>
+      <stop offset="100%" stop-color="#4a8c5c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#8b7355" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+
+  <!-- Subtle background decoration -->
+  <circle cx="320" cy="80" r="50" fill="#e8d5c4" opacity="0.5"/>
+  <circle cx="80" cy="220" r="35" fill="#e8d5c4" opacity="0.4"/>
+
+  <!-- Surface line -->
+  <ellipse cx="200" cy="252" rx="120" ry="8" fill="#d4c4b4" opacity="0.6"/>
+
+  <!-- Plant shadow -->
+  <ellipse cx="200" cy="248" rx="55" ry="10" fill="#a08060" opacity="0.2"/>
+
+  <!-- Pot -->
+  <g filter="url(#shadow)">
+    <path d="M155 195 L165 245 L235 245 L245 195 Z" fill="url(#potGrad)"/>
+    <rect x="148" y="188" width="104" height="12" rx="3" fill="#c4724e"/>
+    <rect x="148" y="188" width="104" height="6" rx="3" fill="#d4845e" opacity="0.5"/>
+  </g>
+
+  <!-- Leaves -->
+  <g filter="url(#shadow)">
+    <!-- Back leaves -->
+    <ellipse cx="170" cy="140" rx="18" ry="35" fill="url(#leafGrad1)" transform="rotate(-25 170 140)"/>
+    <ellipse cx="230" cy="135" rx="16" ry="32" fill="url(#leafGrad2)" transform="rotate(20 230 135)"/>
+
+    <!-- Middle leaves -->
+    <ellipse cx="185" cy="120" rx="15" ry="38" fill="url(#leafGrad2)" transform="rotate(-10 185 120)"/>
+    <ellipse cx="215" cy="118" rx="14" ry="36" fill="url(#leafGrad1)" transform="rotate(12 215 118)"/>
+
+    <!-- Front leaf -->
+    <ellipse cx="200" cy="100" rx="13" ry="40" fill="url(#leafGrad2)" transform="rotate(-3 200 100)"/>
+
+    <!-- Small accent leaf -->
+    <ellipse cx="155" cy="160" rx="10" ry="22" fill="url(#leafGrad1)" transform="rotate(-40 155 160)"/>
+    <ellipse cx="245" cy="155" rx="9" ry="20" fill="url(#leafGrad2)" transform="rotate(35 245 155)"/>
+  </g>
+
+  <!-- Soil -->
+  <ellipse cx="200" cy="192" rx="45" ry="6" fill="#5a3a2a" opacity="0.7"/>
+</svg>

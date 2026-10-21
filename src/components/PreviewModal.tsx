@@ -146,13 +146,13 @@ export function PreviewModal({
     >
       <div
         ref={modalRef}
-        className="relative flex h-full w-full flex-col bg-gray-100 text-gray-900 dark:bg-gray-950 dark:text-gray-100"
+        className="relative flex h-full w-full flex-col bg-surface/95 dark:bg-dark-surface text-ink dark:text-green-50"
       >
         {/* Header */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-gray-900 dark:text-white">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-frame bg-paper/90 dark:border-green-900 dark:bg-dark-surface backdrop-blur-sm px-4 py-3">
+          <h2 className="flex items-center gap-2 text-base font-bold text-ink dark:text-green-50">
             Preview
-            <span className="hidden text-xs font-normal text-gray-500 dark:text-gray-400 sm:inline">
+            <span className="hidden text-xs font-normal text-muted dark:text-green-400 sm:inline">
               final result
             </span>
           </h2>
@@ -161,19 +161,19 @@ export function PreviewModal({
             <button
               type="button"
               onClick={() => setScale((s) => Math.max(MIN_SCALE, s / 1.25))}
-              className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              className="rounded-lg p-2 text-mute transition-colors hover:bg-green-50 dark:text-green-400 dark:hover:bg-dark-elevated"
               title="Zoom out"
               aria-label="Zoom out"
             >
               <ZoomOut size={20} />
             </button>
-            <span className="min-w-[56px] text-center text-sm text-gray-600 dark:text-gray-300">
+            <span className="min-w-[56px] text-center text-sm text-mute dark:text-green-400">
               {Math.round(scale * 100)}%
             </span>
             <button
               type="button"
               onClick={() => setScale((s) => Math.min(MAX_SCALE, s * 1.25))}
-              className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              className="rounded-lg p-2 text-mute transition-colors hover:bg-green-50 dark:text-green-400 dark:hover:bg-dark-elevated"
               title="Zoom in"
               aria-label="Zoom in"
             >
@@ -182,7 +182,7 @@ export function PreviewModal({
             <button
               type="button"
               onClick={fitToScreen}
-              className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              className="rounded-lg p-2 text-mute transition-colors hover:bg-green-50 dark:text-green-400 dark:hover:bg-dark-elevated"
               title="Fit to screen"
               aria-label="Fit to screen"
             >
@@ -191,7 +191,7 @@ export function PreviewModal({
             <button
               type="button"
               onClick={() => setRotation((r) => (r + 90) % 360)}
-              className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              className="rounded-lg p-2 text-mute transition-colors hover:bg-green-50 dark:text-green-400 dark:hover:bg-dark-elevated"
               title="Rotate 90°"
               aria-label="Rotate"
             >
@@ -200,19 +200,19 @@ export function PreviewModal({
             <button
               type="button"
               onClick={toggleFullscreen}
-              className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              className="rounded-lg p-2 text-mute transition-colors hover:bg-green-50 dark:text-green-400 dark:hover:bg-dark-elevated"
               title={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
               aria-label="Toggle fullscreen"
             >
               <Expand size={20} />
             </button>
 
-            <div className="mx-1 h-6 w-px bg-gray-300 dark:bg-gray-700" />
+            <div className="mx-1 h-6 w-px bg-frame dark:bg-green-900" />
 
             <button
               type="button"
               onClick={handleDownload}
-              className="flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-white transition-colors hover:bg-primary-700"
+              className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white transition-all hover:bg-green-700 shadow-md shadow-green-600/20"
             >
               <Download size={18} />
               <span className="hidden sm:inline">Download</span>
@@ -220,7 +220,7 @@ export function PreviewModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+              className="rounded-lg p-2 text-mute transition-colors hover:bg-green-50 dark:text-green-400 dark:hover:bg-dark-elevated"
               title="Close"
               aria-label="Close preview"
             >
@@ -261,3 +261,4 @@ function rotateCanvas(source: HTMLCanvasElement, degrees: number): HTMLCanvasEle
   ctx.drawImage(source, -source.width / 2, -source.height / 2);
   return out;
 }
+

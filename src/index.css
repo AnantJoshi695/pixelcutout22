@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 /*
  * Tailwind v4 is CSS-first: the `darkMode: 'class'` option in tailwind.config.js
@@ -11,39 +12,90 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
+  /* Professional green palette */
+  --color-green-50:  #e7f5ec;
+  --color-green-100: #c5ebd5;
+  --color-green-200: #8fd9b0;
+  --color-green-300: #59c688;
+  --color-green-400: #2dbe7f;
+  --color-green-500: #21834a;
+  --color-green-600: #1a6d3d;
+  --color-green-700: #145730;
+  --color-green-800: #0e4123;
+  --color-green-900: #092b18;
+  --color-green-950: #041a0d;
+
+  /* Light-mode neutrals */
+  --color-surface: #f7faf8;
+  --color-paper:   #ffffff;
+  --color-ink:     #17251c;
+  --color-mute:    #53665a;
+  --color-muted:   #8a9e8f;
+  --color-frame:   #dce8df;
+
+  /* Dark-mode surfaces */
+  --color-dark-surface: #19231d;
+  --color-dark-elevated: #202d25;
+  --color-dark-workspace: #0B1711;
+  --color-dark-sidebar: #10231A;
+  --color-dark-card: #172D21;
+  --color-dark-border: #244532;
 
   --animate-fade-in: fadeIn 0.5s ease-in-out;
   --animate-slide-up: slideUp 0.5s ease-out;
   --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float-slow: floatSlow 14s ease-in-out infinite;
+  --animate-float-medium: floatMedium 20s ease-in-out infinite;
+  --animate-drift: drift 22s linear infinite;
+  --animate-soft-pulse: softPulse 5s ease-in-out infinite;
+  --animate-morph: morph 16s ease-in-out infinite;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Custom keyframes                                                           */
+/* -------------------------------------------------------------------------- */
 @keyframes fadeIn {
-  0% { opacity: 0; }
+  0%   { opacity: 0; }
   100% { opacity: 1; }
 }
 
 @keyframes slideUp {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0%   { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
 }
 
-/*
- * Theme foundation.
- * Components should rely on inheritance for icon/text colour rather than
- * hard-coding values, so a single pair of base rules keeps every control
- * readable in both themes. `color-scheme` also fixes native widgets
- * (scrollbars, the colour picker, range tracks).
- */
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0)   scale(1);    }
+  33%      { transform: translate(30px, -20px) scale(1.05); }
+  66%      { transform: translate(-20px, 15px)  scale(0.95); }
+}
+
+@keyframes floatMedium {
+  0%, 100% { transform: translate(0, 0) rotate(0deg);    }
+  50%      { transform: translate(-40px, 25px) rotate(5deg); }
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0);       }
+  25%  { transform: translate(60px, -30px); }
+  50%  { transform: translate(30px, 40px);  }
+  75%  { transform: translate(-40px, 20px); }
+  100% { transform: translate(0, 0);        }
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1);    }
+  50%      { opacity: 0.65; transform: scale(1.06); }
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+  50%      { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Theme foundation                                                           */
+/* -------------------------------------------------------------------------- */
 @layer base {
   :root {
     color-scheme: light;
@@ -63,10 +115,9 @@
   }
 
   body {
-    /* Text defaults: dark text in light mode, light text in dark mode.
-       Any element that does not set its own colour inherits a readable one. */
-    color: var(--color-gray-900, #111827);
-    background-color: var(--color-gray-50, #f9fafb);
+    color: #17251c;
+    background-color: #f7faf8;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     transition:
       background-color 300ms ease,
       color 300ms ease,
@@ -75,8 +126,8 @@
   }
 
   .dark body {
-    color: #f3f4f6;
-    background-color: #030712;
+    color: #f1f7f2;
+    background-color: #101713;
   }
 
   /* Form controls should never fall back to a black-on-dark default. */
@@ -89,7 +140,7 @@
   }
 
   ::placeholder {
-    color: var(--color-gray-400, #9ca3af);
+    color: #94a3b8;
   }
 }
 
@@ -106,58 +157,178 @@
   }
 
   .dark .checkerboard {
-    background-color: #1f2937;
+    background-color: #101713;
     background-image:
-      linear-gradient(45deg, #374151 25%, transparent 25%),
-      linear-gradient(-45deg, #374151 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #374151 75%),
-      linear-gradient(-45deg, transparent 75%, #374151 75%);
+      linear-gradient(45deg, #1e2e24 25%, transparent 25%),
+      linear-gradient(-45deg, #1e2e24 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #1e2e24 75%),
+      linear-gradient(-45deg, transparent 75%, #1e2e24 75%);
     background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   }
 
-  /* Range inputs: make the track/thumb legible in both themes. */
+  /* Range inputs */
   input[type='range'] {
     @apply w-full cursor-pointer appearance-none bg-transparent;
   }
 
   input[type='range']::-webkit-slider-runnable-track {
     @apply h-1.5 rounded-full;
-    background-color: var(--color-gray-300, #d1d5db);
+    background-color: #d1d5db;
   }
 
   .dark input[type='range']::-webkit-slider-runnable-track {
-    background-color: var(--color-gray-600, #4b5563);
+    background-color: #34463a;
   }
 
   input[type='range']::-webkit-slider-thumb {
     @apply mt-[-6px] h-4 w-4 appearance-none rounded-full;
-    background-color: var(--color-primary-600, #0284c7);
+    background-color: #21834a;
   }
 
   input[type='range']::-moz-range-track {
     @apply h-1.5 rounded-full;
-    background-color: var(--color-gray-300, #d1d5db);
+    background-color: #d1d5db;
   }
 
   .dark input[type='range']::-moz-range-track {
-    background-color: var(--color-gray-600, #4b5563);
+    background-color: #34463a;
   }
 
   input[type='range']::-moz-range-thumb {
     @apply h-4 w-4 rounded-full border-0;
-    background-color: var(--color-primary-600, #0284c7);
+    background-color: #21834a;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Abstract animated background — soft, professional blobs           */
+  /* ------------------------------------------------------------------ */
+  .bg-abstract {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .bg-abstract__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    will-change: transform;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  .bg-abstract__blob--1 {
+    width: clamp(300px, 50vw, 800px);
+    height: clamp(300px, 50vw, 800px);
+    top: -10%;
+    right: -6%;
+    background: radial-gradient(circle, rgba(45, 190, 127, 0.25) 0%, rgba(45, 190, 127, 0) 70%);
+    animation: floatSlow 14s ease-in-out infinite;
+  }
+
+  .bg-abstract__blob--2 {
+    width: clamp(200px, 35vw, 600px);
+    height: clamp(200px, 35vw, 600px);
+    bottom: 5%;
+    left: -6%;
+    background: radial-gradient(circle, rgba(33, 131, 74, 0.20) 0%, rgba(33, 131, 74, 0) 70%);
+    animation: floatMedium 20s ease-in-out infinite;
+  }
+
+  .bg-abstract__blob--3 {
+    width: clamp(180px, 30vw, 500px);
+    height: clamp(180px, 30vw, 500px);
+    top: 40%;
+    left: 45%;
+    background: radial-gradient(circle, rgba(231, 245, 236, 0.40) 0%, rgba(231, 245, 236, 0) 70%);
+    animation: drift 22s linear infinite;
+  }
+
+  .bg-abstract__blob--4 {
+    width: clamp(120px, 20vw, 340px);
+    height: clamp(120px, 20vw, 340px);
+    top: 20%;
+    left: 10%;
+    background: radial-gradient(circle, rgba(45, 190, 127, 0.18) 0%, rgba(45, 190, 127, 0) 70%);
+    animation: softPulse 5s ease-in-out infinite;
+  }
+
+  /* Geometric accents */
+  .bg-abstract__geo {
+    position: absolute;
+    will-change: transform;
+  }
+
+  .bg-abstract__geo--ring {
+    width: clamp(140px, 22vw, 360px);
+    height: clamp(140px, 22vw, 360px);
+    top: 12%;
+    right: 12%;
+    border: 1.5px solid rgba(33, 131, 74, 0.18);
+    border-radius: 50%;
+    animation: floatSlow 22s ease-in-out infinite;
+  }
+
+  .bg-abstract__geo--soft {
+    width: clamp(90px, 14vw, 240px);
+    height: clamp(90px, 14vw, 240px);
+    bottom: 22%;
+    right: 22%;
+    background: rgba(45, 190, 127, 0.10);
+    animation: morph 16s ease-in-out infinite;
+  }
+
+  /* Dark theme overrides — keep blobs subtle against dark bg */
+  .dark .bg-abstract__blob {
+    opacity: 0.50;
+  }
+
+  .dark .bg-abstract__blob--1 {
+    background: radial-gradient(circle, rgba(85, 217, 154, 0.18) 0%, rgba(85, 217, 154, 0) 70%);
+  }
+
+  .dark .bg-abstract__blob--2 {
+    background: radial-gradient(circle, rgba(143, 209, 171, 0.15) 0%, rgba(143, 209, 171, 0) 70%);
+  }
+
+  .dark .bg-abstract__blob--3 {
+    background: radial-gradient(circle, rgba(231, 245, 236, 0.08) 0%, rgba(231, 245, 236, 0) 70%);
+  }
+
+  .dark .bg-abstract__blob--4 {
+    background: radial-gradient(circle, rgba(85, 217, 154, 0.15) 0%, rgba(85, 217, 154, 0) 70%);
+  }
+
+  .dark .bg-abstract__geo--ring {
+    border-color: rgba(57, 169, 107, 0.22);
+  }
+
+  .dark .bg-abstract__geo--soft {
+    background: rgba(45, 190, 127, 0.08);
   }
 }
 
-/* Thin, theme-aware scrollbars for the side panels. */
+/* ------------------------------------------------------------------ */
+/* Reduced motion                                                     */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .bg-abstract__blob,
+  .bg-abstract__geo {
+    animation: none !important;
+  }
+}
+
+/* Thin, theme-aware scrollbars for side panels. */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-gray-400, #9ca3af) transparent;
+  scrollbar-color: #9ca3af transparent;
 }
 
 .dark * {
-  scrollbar-color: var(--color-gray-600, #4b5563) transparent;
+  scrollbar-color: #34463a transparent;
 }
 
 *::-webkit-scrollbar {
@@ -166,18 +337,17 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--color-gray-300, #d1d5db);
+  background-color: #d1d5db;
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
 .dark *::-webkit-scrollbar-thumb {
-  background-color: var(--color-gray-600, #4b5563);
+  background-color: #34463a;
 }
 
-/* Suppress the theme cross-fade while a drag/zoom interaction is in flight
-   so the editor canvas stays crisp. */
+/* Suppress theme cross-fade during drag/zoom interactions. */
 .no-theme-transition,
 .no-theme-transition * {
   transition: none !important;

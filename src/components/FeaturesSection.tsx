@@ -50,30 +50,30 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section id="features" className="py-20 px-4 bg-white dark:bg-gray-900">
+    <section id="features" className="py-24 px-4 bg-surface dark:bg-dark-surface">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl font-bold text-ink dark:text-green-50 mb-4">
             Powerful Features
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
+          <p className="text-lg text-mute dark:text-green-300">
             Everything you need for professional image editing
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-gradient-to-br hover:from-primary-50 hover:to-purple-50 dark:hover:from-primary-900/20 dark:hover:to-purple-900/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="group relative p-6 rounded-2xl bg-paper border border-frame backdrop-blur-sm hover:border-green-300 dark:hover:border-green-600 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/8 hover:-translate-y-0.5 dark:bg-dark-card dark:border-dark-border dark:hover:border-green-600"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <feature.icon size={24} className="text-white" />
+              <div className="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm shadow-green-600/20">
+                <feature.icon size={18} className="text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-base font-bold text-ink dark:text-green-50 mb-2">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-mute dark:text-green-300 leading-relaxed">
                 {feature.description}
               </p>
             </div>

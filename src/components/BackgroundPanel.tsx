@@ -80,10 +80,10 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
   }
 
   return (
-    <div className="flex h-full w-80 flex-col overflow-y-auto border-l border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+    <div className="flex h-full w-80 flex-col overflow-y-auto border-l border-frame bg-paper p-4 dark:border-dark-border dark:bg-dark-sidebar">
       <div className="space-y-6">
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Background</h3>
+          <h3 className="mb-3 text-sm font-semibold text-ink dark:text-white">Background</h3>
 
           <div className="mb-4 grid grid-cols-2 gap-2">
             {TYPES.map((t) => {
@@ -109,8 +109,8 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
                   aria-pressed={active}
                   className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-all ${
                     active
-                      ? 'bg-primary-100 text-primary-700 shadow-sm dark:bg-primary-900/30 dark:text-primary-300'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
+                      ? 'bg-green-100 text-green-700 shadow-sm dark:bg-dark-card dark:text-white'
+                      : 'bg-surface text-ink hover:bg-frame dark:bg-dark-card dark:text-white/80 dark:hover:bg-green-900/40'
                   }`}
                 >
                   <t.icon size={16} />
@@ -138,7 +138,7 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
           {background.type === 'solid' && (
             <div className="space-y-3">
               <div>
-                <label className="mb-2 block text-xs text-gray-600 dark:text-gray-400">
+                <label className="mb-2 block text-xs text-mute dark:text-white/70">
                   Preset Colors
                 </label>
                 <div className="grid grid-cols-4 gap-2">
@@ -149,8 +149,8 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
                       onClick={() => onBackgroundChange({ type: 'solid', color: color.value })}
                       className={`aspect-square rounded-lg border-2 transition-all ${
                         background.color === color.value
-                          ? 'scale-110 border-primary-600'
-                          : 'border-gray-300 hover:scale-105 dark:border-gray-700'
+                          ? 'scale-110 border-green-600'
+                          : 'border-gray-300 hover:scale-105 dark:border-dark-border'
                       }`}
                       style={{ backgroundColor: color.value }}
                       title={color.name}
@@ -161,7 +161,7 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
               </div>
 
               <div>
-                <label className="mb-2 block text-xs text-gray-600 dark:text-gray-400">
+                <label className="mb-2 block text-xs text-mute dark:text-white/70">
                   Custom Color
                 </label>
                 <div className="flex gap-2">
@@ -172,7 +172,7 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
                       setCustomColor(e.target.value);
                       onBackgroundChange({ type: 'solid', color: e.target.value });
                     }}
-                    className="h-12 w-12 cursor-pointer rounded-lg border border-gray-300 dark:border-gray-700"
+                    className="h-12 w-12 cursor-pointer rounded-lg border border-gray-300 dark:border-dark-border"
                     aria-label="Custom background color"
                   />
                   <input
@@ -182,7 +182,7 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
                       setCustomColor(e.target.value);
                       onBackgroundChange({ type: 'solid', color: e.target.value });
                     }}
-                    className="flex-1 rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+                    className="flex-1 rounded-lg border border-gray-300 bg-surface px-3 py-2 text-sm text-ink dark:border-dark-border dark:bg-dark-card dark:text-white"
                     placeholder="#ffffff"
                     aria-label="Custom background color hex"
                   />
@@ -193,7 +193,7 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
 
           {background.type === 'gradient' && (
             <div className="space-y-3">
-              <label className="mb-2 block text-xs text-gray-600 dark:text-gray-400">
+              <label className="mb-2 block text-xs text-mute dark:text-white/70">
                 Preset Gradients
               </label>
               <div className="space-y-2">
@@ -209,8 +209,8 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
                     }
                     className={`flex flex-col items-center justify-center h-12 w-full rounded-lg border-2 transition-all ${
                       isGradientPreset(gradient.colors)
-                        ? 'scale-105 border-primary-600'
-                        : 'border-gray-300 hover:scale-105 dark:border-gray-700'
+                        ? 'scale-105 border-green-600'
+                        : 'border-gray-300 hover:scale-105 dark:border-dark-border'
                     }`}
                     style={{ background: `linear-gradient(135deg, ${gradient.colors.join(', ')})` }}
                     title={gradient.name}
@@ -222,7 +222,7 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
               </div>
 
               <div>
-                <label className="mb-2 block text-xs text-gray-600 dark:text-gray-400">
+                <label className="mb-2 block text-xs text-mute dark:text-white/70">
                   Gradient Style
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -241,8 +241,8 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
                       }
                       className={`rounded-lg px-3 py-2 text-sm capitalize transition-all ${
                         (background.gradient?.type ?? 'linear') === type
-                          ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
+                          ? 'bg-green-100 text-green-700 dark:bg-dark-card dark:text-white'
+                          : 'bg-surface text-ink hover:bg-frame dark:bg-dark-card dark:text-white/80 dark:hover:bg-green-900/40'
                       }`}
                     >
                       {type}
@@ -258,14 +258,14 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
               <button
                 type="button"
                 onClick={() => bgFileRef.current?.click()}
-                className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 px-3 py-4 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-frame bg-surface px-3 py-4 text-sm text-ink transition-colors hover:bg-frame dark:border-dark-border dark:bg-dark-card dark:text-white dark:hover:bg-green-900/40"
               >
                 {loadingImage ? <Loader2 size={18} className="animate-spin" /> : <ImageIcon size={18} />}
                 {background.image ? 'Replace background image' : 'Choose a background image'}
               </button>
               {background.image && (
                 <div
-                  className="h-20 w-full rounded-lg border border-gray-200 bg-cover bg-center dark:border-gray-700"
+                  className="h-20 w-full rounded-lg border border-frame bg-cover bg-center dark:border-dark-border"
                   style={{ backgroundImage: `url(${background.image})` }}
                 />
               )}
@@ -274,7 +274,7 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
 
           {background.type === 'blur' && (
             <div className="space-y-3">
-              <label className="mb-2 block text-xs text-gray-600 dark:text-gray-400">
+              <label className="mb-2 block text-xs text-mute dark:text-white/70">
                 Blur Amount
               </label>
               <input
@@ -285,32 +285,32 @@ export function BackgroundPanel({ background, onBackgroundChange }: BackgroundPa
                 onChange={(e) =>
                   onBackgroundChange({ type: 'blur', blurAmount: Number(e.target.value) })
                 }
-                className="w-full accent-primary-600"
+                className="w-full accent-green-600"
                 aria-label="Background blur amount"
               />
-              <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center justify-between text-sm text-mute dark:text-white/70">
                 <span>None</span>
-                <span className="font-semibold text-gray-900 dark:text-gray-100">
+                <span className="font-semibold text-ink dark:text-white">
                   {background.blurAmount ?? 20}px
                 </span>
                 <span>Max</span>
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-mute dark:text-white/60">
                 Blurs the original photo behind your subject.
               </p>
             </div>
           )}
         </div>
 
-        {/* Preview swatch */}        <div className="border-t border-gray-200 pt-6 dark:border-gray-800">
-          <label className="mb-2 block text-xs text-gray-600 dark:text-gray-400">Preview</label>
+        <div className="border-t border-frame pt-6 dark:border-dark-border">
+          <label className="mb-2 block text-xs text-mute dark:text-white/70">Preview</label>
           <div
-            className={`h-32 w-full rounded-lg border-2 border-gray-300 dark:border-gray-700 ${
+            className={`h-32 w-full rounded-lg border-2 border-frame dark:border-dark-border ${
               background.type === 'transparent' ? 'checkerboard' : ''
             }`}
             style={previewStyle}
           />
-          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-xs text-mute dark:text-white/60">
             Applied when you export or open the preview.
           </p>
         </div>

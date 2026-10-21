@@ -167,7 +167,7 @@ export function CameraModal({ isOpen, onClose, onCapture }: CameraModalProps) {
               </button>
               <button
                 onClick={handleAccept}
-                className="flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+                className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
               >
                 <Check size={20} />
                 Accept

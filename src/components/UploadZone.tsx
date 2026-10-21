@@ -92,8 +92,8 @@ export function UploadZone({
         className={`
           relative border-2 border-dashed rounded-2xl p-12 transition-all cursor-pointer
           ${isDragging
-            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 scale-105'
-            : 'border-gray-300 dark:border-gray-700 hover:border-primary-400 dark:hover:border-primary-600'
+            ? 'border-green-500 bg-green-50/60 dark:bg-dark-elevated scale-[1.02]'
+            : 'border-frame hover:border-green-400 dark:hover:border-green-600 hover:bg-green-50/40 dark:hover:bg-dark-elevated'
           }
         `}
       >
@@ -107,48 +107,48 @@ export function UploadZone({
 
         <div className="flex flex-col items-center gap-6">
           {/* Icon */}
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center shadow-lg shadow-primary-500/30">
-            <ImageIcon size={36} className="text-white" />
+          <div className="w-16 h-16 rounded-xl bg-green-500 flex items-center justify-center shadow-lg shadow-green-600/20">
+            <ImageIcon size={28} className="text-white" />
           </div>
 
           {/* Text */}
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h3 className="text-xl font-bold text-ink dark:text-green-50 mb-2">
               Drop your image here
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-mute dark:text-muted">
               or choose how to add one
             </p>
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors shadow-lg shadow-primary-500/30"
+              className="flex items-center gap-2 px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all shadow-md shadow-green-600/20 hover:shadow-lg hover:shadow-green-600/30 active:scale-[0.97]"
             >
-              <Upload size={20} />
+              <Upload size={18} />
               Upload Image
             </button>
             <button
               onClick={onCameraClick}
-              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors shadow-lg shadow-purple-500/30"
+              className="flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all shadow-md shadow-green-700/20 hover:shadow-lg hover:shadow-green-700/30 active:scale-[0.97]"
             >
-              <Camera size={20} />
+              <Camera size={18} />
               Take Photo
             </button>
           </div>
 
           {/* Quality level */}
           <div className="w-full max-w-md">
-            <div className="mb-2 flex items-center justify-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-              <Sparkles size={15} className="text-primary-600 dark:text-primary-400" />
+            <div className="mb-2 flex items-center justify-center gap-2 text-sm font-semibold text-green-700 dark:text-muted">
+              <Sparkles size={14} />
               Quality
             </div>
             <div
               role="radiogroup"
               aria-label="Processing quality"
-              className="grid grid-cols-3 gap-1 rounded-xl bg-gray-100 p-1 dark:bg-gray-800"
+              className="grid grid-cols-3 gap-1 rounded-lg bg-green-50 p-1 dark:bg-dark-surface border border-frame"
             >
               {QUALITY_OPTIONS.map((option) => {
                 const active = option.value === quality;
@@ -164,10 +164,10 @@ export function UploadZone({
                       onQualityChange(option.value);
                     }}
                     title={option.description}
-                    className={`rounded-lg px-3 py-2 text-sm font-medium transition-all disabled:opacity-60 ${
+                    className={`rounded-md px-3 py-2 text-sm font-semibold transition-all disabled:opacity-60 ${
                       active
-                        ? 'bg-white text-primary-700 shadow-sm dark:bg-gray-950 dark:text-primary-300'
-                        : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
+                        ? 'bg-white text-green-700 shadow-sm dark:bg-green-800 dark:text-green-100'
+                        : 'text-mute hover:text-ink dark:text-muted dark:hover:text-green-200'
                     }`}
                   >
                     {option.label}
@@ -175,29 +175,24 @@ export function UploadZone({
                 );
               })}
             </div>
-            <p className="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
+            <p className="mt-2 text-center text-xs text-muted dark:text-green-500">
               {activeOption.description}
             </p>
           </div>
 
           {/* Supported formats */}
-          <p className="text-sm text-gray-500 dark:text-gray-500">
+          <p className="text-sm font-medium text-muted dark:text-green-500">
             JPG • PNG • WEBP • HEIC
           </p>
         </div>
 
         {/* Error message */}
         {error && (
-          <div className="absolute bottom-4 left-4 right-4 p-3 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg text-red-700 dark:text-red-300 text-sm">
+          <div className="absolute bottom-4 left-4 right-4 p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 rounded-lg text-red-700 dark:text-red-300 text-sm">
             {error}
           </div>
         )}
       </div>
-
-      {/* Paste hint */}
-      <p className="text-center text-sm text-gray-500 dark:text-gray-500 mt-4">
-        💡 You can also paste an image directly (Ctrl+V / Cmd+V)
-      </p>
     </div>
   );
 }

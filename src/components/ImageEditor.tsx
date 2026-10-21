@@ -486,12 +486,12 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
 
   if (error) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-gray-50 p-6 text-center dark:bg-gray-950">
-        <p className="max-w-md text-gray-800 dark:text-gray-200">{error}</p>
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-surface p-6 text-center dark:bg-dark-surface">
+        <p className="max-w-md text-ink dark:text-white">{error}</p>
         <button
           type="button"
           onClick={onClose}
-          className="rounded-lg bg-primary-600 px-5 py-2.5 text-white hover:bg-primary-700"
+          className="rounded-lg bg-green-600 px-5 py-2.5 text-white hover:bg-green-700"
         >
           Back
         </button>
@@ -502,15 +502,15 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
   return (
     <div
       ref={rootRef}
-      className="fixed inset-0 z-50 flex flex-col bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100"
+      className="fixed inset-0 z-50 flex flex-col bg-surface text-ink dark:bg-dark-workspace dark:text-white"
     >
       {/* Header */}
-      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 bg-white px-3 py-2.5 dark:border-gray-800 dark:bg-gray-900 sm:px-5">
+      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-frame bg-paper px-3 py-2.5 dark:border-dark-border dark:bg-dark-sidebar sm:px-5">
         <div className="flex min-w-0 items-center gap-3">
           <button
             type="button"
             onClick={onClose}
-            className="flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-ink transition-colors hover:bg-surface dark:text-white dark:hover:bg-dark-card"
             title="Back to home"
             aria-label="Back to home"
           >
@@ -520,7 +520,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
           <button
             type="button"
             onClick={() => setMobilePanel((p) => (p === 'left' ? null : 'left'))}
-            className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 lg:hidden"
+            className="rounded-lg p-2 text-ink hover:bg-surface dark:text-white dark:hover:bg-dark-card lg:hidden"
             title="Tools"
             aria-label="Toggle tools panel"
           >
@@ -529,7 +529,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
           <h2 className="max-w-[38vw] truncate text-base font-bold text-gray-900 dark:text-white sm:max-w-xs">
             {imageData.fileName}
           </h2>
-          <span className="hidden text-sm text-gray-500 dark:text-gray-400 sm:inline">
+          <span className="hidden text-sm text-mute dark:text-white/70 sm:inline">
             {imageData.dimensions.width} × {imageData.dimensions.height}
           </span>
         </div>
@@ -539,7 +539,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
             type="button"
             onClick={undo}
             disabled={!canUndo}
-            className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="rounded-lg p-2 text-ink transition-colors hover:bg-surface disabled:cursor-not-allowed disabled:opacity-40 dark:text-white dark:hover:bg-dark-card"
             title="Undo (Ctrl+Z)"
             aria-label="Undo"
           >
@@ -549,31 +549,31 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
             type="button"
             onClick={redo}
             disabled={!canRedo}
-            className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="rounded-lg p-2 text-ink transition-colors hover:bg-surface disabled:cursor-not-allowed disabled:opacity-40 dark:text-white dark:hover:bg-dark-card"
             title="Redo (Ctrl+Shift+Z)"
             aria-label="Redo"
           >
             <Redo size={20} />
           </button>
 
-          <div className="mx-1 h-6 w-px bg-gray-300 dark:bg-gray-700" />
+          <div className="mx-1 h-6 w-px bg-frame dark:bg-dark-border" />
 
           <button
             type="button"
             onClick={handleZoomOut}
-            className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="rounded-lg p-2 text-ink transition-colors hover:bg-surface dark:text-white dark:hover:bg-dark-card"
             title="Zoom out"
             aria-label="Zoom out"
           >
             <ZoomOut size={20} />
           </button>
-          <span className="min-w-[52px] text-center text-sm text-gray-600 dark:text-gray-300">
+          <span className="min-w-[52px] text-center text-sm text-mute dark:text-white/70">
             {Math.round(zoom * 100)}%
           </span>
           <button
             type="button"
             onClick={handleZoomIn}
-            className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="rounded-lg p-2 text-ink transition-colors hover:bg-surface dark:text-white dark:hover:bg-dark-card"
             title="Zoom in"
             aria-label="Zoom in"
           >
@@ -582,7 +582,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
           <button
             type="button"
             onClick={handleFit}
-            className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="rounded-lg p-2 text-ink transition-colors hover:bg-surface dark:text-white dark:hover:bg-dark-card"
             title="Fit to screen"
             aria-label="Fit to screen"
           >
@@ -591,19 +591,19 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
           <button
             type="button"
             onClick={handleReset}
-            className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="rounded-lg p-2 text-ink transition-colors hover:bg-surface dark:text-white dark:hover:bg-dark-card"
             title="Reset all edits"
             aria-label="Reset all edits"
           >
             <RotateCcw size={20} />
           </button>
 
-          <div className="mx-1 h-6 w-px bg-gray-300 dark:bg-gray-700" />
+          <div className="mx-1 h-6 w-px bg-frame dark:bg-dark-border" />
 
           <button
             type="button"
             onClick={() => setPreviewOpen(true)}
-            className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-800 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center gap-2 rounded-lg bg-surface px-3 py-2 text-ink transition-colors hover:bg-frame dark:bg-dark-card dark:text-white dark:hover:bg-green-900/40"
             title="Preview result"
           >
             <Eye size={18} />
@@ -621,7 +621,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
               setFormat(next);
               setEditVersion((v) => v + 1);
             }}
-            className="rounded-lg border border-gray-300 bg-white px-2 py-2 text-sm text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+            className="rounded-lg border border-frame bg-paper px-2 py-2 text-sm text-ink dark:border-dark-border dark:bg-dark-card dark:text-white"
             title="Export format"
           >
             <option value="png">PNG</option>
@@ -632,7 +632,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
           <button
             type="button"
             onClick={handleDownload}
-            className="flex items-center gap-2 rounded-lg bg-primary-600 px-3 py-2 text-white transition-colors hover:bg-primary-700"
+            className="flex items-center gap-2 rounded-lg bg-green-600 px-3 py-2 text-white transition-colors hover:bg-green-700"
             title="Download"
           >
             <Download size={18} />
@@ -642,7 +642,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
           <button
             type="button"
             onClick={toggleFullscreen}
-            className="hidden rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 sm:block"
+            className="hidden rounded-lg p-2 text-ink transition-colors hover:bg-surface dark:text-white dark:hover:bg-dark-card sm:block"
             title={fullscreen ? 'Exit fullscreen' : 'Fullscreen'}
             aria-label="Toggle fullscreen"
           >
@@ -652,7 +652,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="rounded-lg p-2 text-ink transition-colors hover:bg-surface dark:text-white dark:hover:bg-dark-card"
             title="Close editor"
             aria-label="Close editor"
           >
@@ -684,7 +684,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
         {/* Canvas area */}
         <div
           ref={containerRef}
-          className={`relative flex-1 touch-none select-none overflow-hidden bg-gray-200 dark:bg-gray-800 ${
+          className={`relative flex-1 touch-none select-none overflow-hidden bg-surface dark:bg-dark-workspace ${
             tool === 'select' ? 'cursor-grab active:cursor-grabbing' : 'cursor-none'
           }`}
           onPointerDown={handlePointerDown}
@@ -733,7 +733,7 @@ export function ImageEditor({ imageData, onClose }: ImageEditorProps) {
         <button
           type="button"
           onClick={() => setMobilePanel((p) => (p === 'right' ? null : 'right'))}
-          className="absolute bottom-4 right-4 z-40 rounded-full bg-white p-3 text-gray-700 shadow-lg dark:bg-gray-800 dark:text-gray-100 lg:hidden"
+          className="absolute bottom-4 right-4 z-40 rounded-full bg-paper p-3 text-ink shadow-lg dark:bg-dark-card dark:text-white lg:hidden"
           title="Background options"
           aria-label="Toggle background panel"
         >

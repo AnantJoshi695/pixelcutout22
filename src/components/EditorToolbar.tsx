@@ -31,12 +31,12 @@ export function EditorToolbar({
   return (
     <div
       role="group"
-      className="flex h-full w-64 flex-col overflow-y-auto border-r border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900 lg:w-64"
+      className="flex h-full w-64 flex-col overflow-y-auto border-r border-frame bg-paper p-4 text-sm dark:border-dark-border dark:bg-dark-sidebar lg:w-64"
     >
       <div className="space-y-6">
         {/* Tools */}
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Tools</h3>
+          <h3 className="mb-3 text-sm font-semibold text-ink dark:text-white">Tools</h3>
           <div className="space-y-2">
             {TOOLS.map((t) => {
               const active = tool === t.value;
@@ -48,8 +48,8 @@ export function EditorToolbar({
                   aria-pressed={active}
                   className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left transition-all ${
                     active
-                      ? 'bg-primary-100 text-primary-700 shadow-sm dark:bg-primary-900/30 dark:text-primary-300'
-                      : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+                      ? 'bg-green-100 text-green-700 shadow-sm dark:bg-dark-card dark:text-white'
+                      : 'text-ink hover:bg-surface dark:text-white/80 dark:hover:bg-dark-card'
                   }`}
                   title={t.description}
                 >
@@ -67,8 +67,8 @@ export function EditorToolbar({
         {/* Brush settings */}
         {tool !== 'select' && (
           <>
-            <div className="border-t border-gray-200 pt-6 dark:border-gray-800">
-              <h3 className="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <div className="border-t border-frame pt-6 dark:border-dark-border">
+              <h3 className="mb-3 text-sm font-semibold text-ink dark:text-white">
                 Brush Size
               </h3>
               <div className="space-y-3">
@@ -80,30 +80,30 @@ export function EditorToolbar({
                   onChange={(e) =>
                     onBrushSettingsChange({ ...brushSettings, size: Number(e.target.value) })
                   }
-                  className="w-full accent-primary-600"
+                  className="w-full accent-green-600"
                   aria-label="Brush size"
                 />
-                <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center justify-between text-sm text-mute dark:text-white/70">
                   <span>Small</span>
-                  <span className="font-semibold text-gray-900 dark:text-gray-100">
+                  <span className="font-semibold text-ink dark:text-white">
                     {brushSettings.size}px
                   </span>
                   <span>Large</span>
                 </div>
-                <div className="flex h-28 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
+                <div className="flex h-28 items-center justify-center rounded-lg border border-frame bg-surface dark:border-dark-border dark:bg-dark-card">
                   <div
-                    className="rounded-full bg-primary-600 dark:bg-primary-400"
+                    className="rounded-full bg-green-600 dark:bg-green-400"
                     style={{ width: `${previewSize}px`, height: `${previewSize}px` }}
                   />
                 </div>
-                <p className="text-center text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-center text-xs text-mute dark:text-white/60">
                   Size is in image pixels — the on-canvas circle matches it.
                 </p>
               </div>
             </div>
 
-            <div className="border-t border-gray-200 pt-6 dark:border-gray-800">
-              <h3 className="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Hardness</h3>
+            <div className="border-t border-frame pt-6 dark:border-dark-border">
+              <h3 className="mb-3 text-sm font-semibold text-ink dark:text-white">Hardness</h3>
               <div className="space-y-3">
                 <input
                   type="range"
@@ -114,12 +114,12 @@ export function EditorToolbar({
                   onChange={(e) =>
                     onBrushSettingsChange({ ...brushSettings, hardness: Number(e.target.value) })
                   }
-                  className="w-full accent-primary-600"
+                  className="w-full accent-green-600"
                   aria-label="Brush hardness"
                 />
-                <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center justify-between text-sm text-mute dark:text-white/70">
                   <span>Soft</span>
-                  <span className="font-semibold text-gray-900 dark:text-gray-100">
+                  <span className="font-semibold text-ink dark:text-white">
                     {Math.round(brushSettings.hardness * 100)}%
                   </span>
                   <span>Hard</span>
@@ -130,12 +130,12 @@ export function EditorToolbar({
         )}
 
         {/* Shortcuts */}
-        <div className="border-t border-gray-200 pt-6 dark:border-gray-800">
-          <div className="rounded-lg bg-primary-50 p-4 dark:bg-primary-900/20">
-            <h4 className="mb-2 text-sm font-semibold text-primary-900 dark:text-primary-100">
+        <div className="border-t border-frame pt-6 dark:border-dark-border">
+          <div className="rounded-lg bg-green-50 p-4 dark:bg-dark-card">
+            <h4 className="mb-2 text-sm font-semibold text-ink dark:text-white">
               💡 Tips
             </h4>
-            <ul className="space-y-1 text-xs text-primary-800 dark:text-primary-200">
+            <ul className="space-y-1 text-xs text-mute dark:text-white/70">
               <li>• Select lets you pan and zoom</li>
               <li>• Remove makes areas transparent</li>
               <li>• Recover brings back the original</li>
